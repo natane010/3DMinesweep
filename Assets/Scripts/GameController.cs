@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField] GameObject rotateObj;
 
     [SerializeField] GameObject targetObject;
     [SerializeField] float zoomSpeed = 1;
@@ -23,6 +24,7 @@ public class GameController : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             lastMousePosition = Input.mousePosition;
+            targetObject.transform.parent = rotateObj.transform;
         }
         else if (Input.GetMouseButton(1))
         {
@@ -35,7 +37,7 @@ public class GameController : MonoBehaviour
                 newAngle.x = x * rotationSpeed.x;
                 newAngle.y = y * rotationSpeed.y;
 
-                targetObject.transform.Rotate(newAngle);
+                rotateObj.transform.Rotate(newAngle);
                 lastMousePosition = Input.mousePosition;
             }
             else
@@ -47,9 +49,14 @@ public class GameController : MonoBehaviour
                 newAngle.x = x * rotationSpeed.x;
                 newAngle.y = y * rotationSpeed.y;
 
-                targetObject.transform.Rotate(newAngle);
+                rotateObj.transform.Rotate(newAngle);
                 lastMousePosition = Input.mousePosition;
             }
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            targetObject.transform.parent = null;
+            rotateObj.transform.rotation = Quaternion.identity;
         }
 
         CameraZoom();

@@ -15,13 +15,21 @@ namespace Minesweeper
         {
             if (isMine)
             {
-                material.color = Color.red;
+                material.color = Color.green;
             }
             else if (numberMineDistance == 1)
             {
                 material.color = Color.green;
             }
 
+        }
+
+        private void OnDestroy()
+        {
+            if (isMine)
+            {
+                Debug.Log("Booo!!");
+            }
         }
     }
 }

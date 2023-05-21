@@ -7,6 +7,9 @@ namespace Minesweeper
     public class MinesweeperController : MonoBehaviour
     {
         [SerializeField] GameObject CellObject;
+        [SerializeField] GameObject SampleObject;
+        [SerializeField] GameObject SampleObjRoot;
+
         [SerializeField, Range(0,50)] int mineGameCubeSize = 3;
 
         [SerializeField, Range(1, 100)] int maxCellCount = 1;
@@ -27,6 +30,8 @@ namespace Minesweeper
             cells = new GameObject[size, size, size];
             cellDatas = new CellData[size, size, size];
 
+            List<GameObject> samples = new List<GameObject>();
+
             for (int x = 0; x < size; x++)
             {
                 for (int y = 0; y < size; y++)
@@ -46,6 +51,10 @@ namespace Minesweeper
                         if (n <= (maxCellCount / size ^ 3))
                         {
                             a.IsMine = true;
+                            var offs = this.transform.position - SampleObjRoot.transform.position;
+                            var sample = Instantiate(SampleObject, position - offs, Quaternion.identity);
+                            samples.Add(sample);
+                            sample.transform.parent = SampleObjRoot.transform;
                         }
                         else
                         {
@@ -55,6 +64,7 @@ namespace Minesweeper
                     }
                 }
             }
+
 
 
             for (int x = 0; x < size; x++)
@@ -94,6 +104,11 @@ namespace Minesweeper
             var halfPoint = (cells[0, 0, 0].transform.position + cells[size - 1, size - 1, size - 1].transform.position) / 2;
 
             foreach (var item in cells)
+            {
+                item.transform.position -= halfPoint;
+            }
+
+            foreach (var item in samples)
             {
                 item.transform.position -= halfPoint;
             }

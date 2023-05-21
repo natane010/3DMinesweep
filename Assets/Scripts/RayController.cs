@@ -11,7 +11,7 @@ public class RayController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit) && Input.GetMouseButtonDown(0))
         {
-            Debug.Log(hit.collider.gameObject.transform.position);
+            //Debug.Log(hit.collider.gameObject.transform.position);
             Destroy(hit.collider.gameObject);
         }
     }
