@@ -7,8 +7,6 @@ namespace Minesweeper
     {
         Material material;
 
-
-
         private void Start()
         {
             material = GetComponent<MeshRenderer>().material;
@@ -19,6 +17,11 @@ namespace Minesweeper
             {
                 material.color = Color.red;
             }
+            else if (numberMineDistance == 1)
+            {
+                material.color = Color.green;
+            }
+
         }
     }
 }

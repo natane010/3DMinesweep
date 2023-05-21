@@ -185,8 +185,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetObject: {fileID: 2014450353}
-  rotationSpeed: {x: 0.5, y: 0.5}
-  reverse: 1
+  rotationSpeed: {x: 2, y: 2}
+  reverse: 0
   zoomSpeed: 1
 --- !u!4 &241627163
 Transform:
@@ -473,9 +473,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CellObject: {fileID: 8770053746202365420, guid: d7a3aacd44351ce4aa5b69bc3b4965b2,
     type: 3}
-  mineGameCubeSize: 2
+  mineGameCubeSize: 5
   maxCellCount: 55
-  minCellCount: 2
+  minCellCount: 1
 --- !u!4 &2014450355
 Transform:
   m_ObjectHideFlags: 0

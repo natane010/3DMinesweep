@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     [SerializeField] GameObject targetObject;
-    public Vector2 rotationSpeed = new Vector2(0.1f, 0.2f);
+    public Vector2 rotationSpeed = new Vector2(0.5f, 0.5f);
     public bool reverse;
     public float zoomSpeed = 1;
 
@@ -23,35 +23,28 @@ public class GameController : MonoBehaviour
     {
         var scroll = Input.mouseScrollDelta.y;
         mainCamera.transform.position += -mainCamera.transform.forward * scroll * zoomSpeed;
-        if (Input.GetMouseButtonDown(1))
-        {
-            lastMousePosition = Input.mousePosition;
-        }
-        else if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1))
         {
             if (!reverse)
             {
-                var x = (Input.mousePosition.y - lastMousePosition.y);
-                var y = (lastMousePosition.x - Input.mousePosition.x);
+                //Vector3でX,Y方向の回転の度合いを定義
+                Vector3 angle = new Vector3(Input.GetAxis("Mouse X") * rotationSpeed.x, 
+                    Input.GetAxis("Mouse Y") * rotationSpeed.y * -1f, 0);
 
-                var newAngle = Vector3.zero;
-                newAngle.x = x * rotationSpeed.x;
-                newAngle.y = y * rotationSpeed.y;
+                //transform.RotateAround()をしようしてメインカメラを回転させる
+                mainCamera.transform.RotateAround(targetObject.transform.position, Vector3.up, angle.x);
+                mainCamera.transform.RotateAround(targetObject.transform.position, transform.right, angle.y);
 
-                targetObject.transform.Rotate(newAngle);
-                lastMousePosition = Input.mousePosition;
             }
             else
             {
-                var x = (lastMousePosition.y - Input.mousePosition.y);
-                var y = (Input.mousePosition.x - lastMousePosition.x);
+                //Vector3でX,Y方向の回転の度合いを定義
+                Vector3 angle = new Vector3(Input.GetAxis("Mouse X") * rotationSpeed.x,
+                    Input.GetAxis("Mouse Y") * rotationSpeed.y * -1f, 0) * -1f;
 
-                var newAngle = Vector3.zero;
-                newAngle.x = x * rotationSpeed.x;
-                newAngle.y = y * rotationSpeed.y;
-
-                targetObject.transform.Rotate(newAngle);
-                lastMousePosition = Input.mousePosition;
+                //transform.RotateAround()をしようしてメインカメラを回転させる
+                mainCamera.transform.RotateAround(targetObject.transform.position, Vector3.up, angle.x);
+                mainCamera.transform.RotateAround(targetObject.transform.position, transform.right, angle.y);
             }
         }
     }

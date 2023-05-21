@@ -19,7 +19,7 @@ namespace Minesweeper
             }
         }
 
-        internal int numberMineDistance;
+        internal int numberMineDistance = 0;
 
         public int NumberMineDistance
         {
@@ -32,5 +32,6 @@ namespace Minesweeper
                 numberMineDistance = value;
             }
         }
+
     }
 }
