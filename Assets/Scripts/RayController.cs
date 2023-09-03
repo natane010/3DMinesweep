@@ -9,7 +9,7 @@ public class RayController : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit) && Input.GetMouseButtonDown(0))
+        if (Physics.Raycast(ray, out hit) && Input.GetMouseButtonUp(0))
         {
             //Debug.Log(hit.collider.gameObject.transform.position);
             Destroy(hit.collider.gameObject);
