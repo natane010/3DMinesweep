@@ -699,6 +699,10 @@ MonoBehaviour:
   mineGameCubeSize: 5
   maxCellCount: 55
   minCellCount: 1
+  MeshData:
+    MinMesh: {fileID: 0}
+    YelllowMesh: {fileID: 0}
+    SafeMesh: {fileID: 0}
 --- !u!4 &2014450355
 Transform:
   m_ObjectHideFlags: 0

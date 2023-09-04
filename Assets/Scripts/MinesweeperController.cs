@@ -15,6 +15,8 @@ namespace Minesweeper
         [SerializeField, Range(1, 100)] int maxCellCount = 1;
         [SerializeField, Range(1, 100)] int minCellCount = 1;
 
+        [SerializeField] MinMeshData MeshData;
+
         GameObject[,,] cells;
         CellData[,,] cellDatas;
 
@@ -48,6 +50,7 @@ namespace Minesweeper
 
                         cellDatas[x, y, z] = cells[x, y, z].GetComponent<CellData>();
                         CellData a = cellDatas[x, y, z];
+                        a.minMesh = MeshData;
                         if (n <= (maxCellCount / size ^ 3))
                         {
                             a.IsMine = true;
@@ -90,7 +93,7 @@ namespace Minesweeper
                                             var cellnum = new Vector3(x - dx, y - dy, z - dz);
                                             if (NullCheakCell(size, cellnum))
                                             {
-                                                cellDatas[x - dx, y - dy, z - dz].numberMineDistance = 1;
+                                                cellDatas[x - dx, y - dy, z - dz].numberMineDistance += 1;
                                             }
                                         }
                                     }

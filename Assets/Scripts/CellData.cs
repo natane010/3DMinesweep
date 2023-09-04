@@ -5,23 +5,55 @@ namespace Minesweeper
 {
     public class CellData : MinesweeperCellBase
     {
+        MeshFilter meshFilter;
         Material material;
+        bool m_GameCheaker = false;
 
         private void Start()
         {
             material = GetComponent<MeshRenderer>().material;
+            meshFilter = GetComponent<MeshFilter>();
+            m_GameCheaker = false;
         }
         private void Update()
         {
+            if (!m_GameCheaker)
+            {
+                m_GameCheaker = true;
+                LateStart();
+            }
+        }
+
+        void LateStart()
+        {
             if (isMine)
             {
-                material.color = Color.green;
+                //material.color = Color.yellow;
+                //return;
             }
-            else if (numberMineDistance == 1)
+            switch (numberMineDistance)
             {
-                material.color = Color.green;
+                case 0:
+                    meshFilter.mesh = minMesh.SafeMesh;
+                    material.color = Color.green;
+                    if (!isMine)
+                    {
+                        Destroy(this.gameObject);
+                    } 
+                    break;
+                case 2:
+                    meshFilter.mesh = minMesh.YelllowMesh;
+                    material.color = Color.yellow;
+                    break;
+                case 1:
+                    meshFilter.mesh = minMesh.SafeMesh;
+                    material.color = Color.green;
+                    break;
+                default:
+                    meshFilter.mesh = minMesh.SafeMesh;
+                    material.color = Color.green;
+                    break;
             }
-
         }
 
         private void OnDestroy()

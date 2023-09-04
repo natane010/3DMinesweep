@@ -7,6 +7,7 @@ namespace Minesweeper
     public class MinesweeperCellBase : MonoBehaviour
     {
         internal bool isMine;
+        public MinMeshData minMesh;
         public bool IsMine
         {
             get
@@ -33,5 +34,13 @@ namespace Minesweeper
             }
         }
 
+    }
+
+    [System.Serializable]
+    public struct MinMeshData
+    {
+        public Mesh MinMesh;
+        public Mesh YelllowMesh;
+        public Mesh SafeMesh;
     }
 }
