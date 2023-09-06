@@ -700,9 +700,11 @@ MonoBehaviour:
   maxCellCount: 55
   minCellCount: 1
   MeshData:
-    MinMesh: {fileID: 0}
-    YelllowMesh: {fileID: 0}
-    SafeMesh: {fileID: 0}
+    MinMesh: {fileID: 2785687960597270117, guid: 2bc2ecaa649e56c49a4fcd74ae613281,
+      type: 3}
+    YelllowMesh: {fileID: -2447776121362496397, guid: 9ecfa3d486bac8242a6c0636977f1b89,
+      type: 3}
+    SafeMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &2014450355
 Transform:
   m_ObjectHideFlags: 0
