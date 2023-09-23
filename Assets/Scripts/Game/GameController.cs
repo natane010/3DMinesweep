@@ -15,10 +15,12 @@ public class GameController : MonoBehaviour
     [SerializeField] Vector2 rotationSpeed;
     private Vector2 lastMousePosition;
 
+    public static Vector2 lastVector;
 
     void Start()
     {
         mainCamera = Camera.main;
+        lastVector = Vector2.zero;
     }
 
     void Update()
@@ -35,9 +37,7 @@ public class GameController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            lastMousePosition = Input.mousePosition;
-            targetObject.transform.parent = rotateObj.transform;
-            subtargetObject.transform.parent = subrootObj.transform;
+            GetSetVector();
         }
         else if (Input.GetMouseButton(0))
         {
@@ -46,6 +46,17 @@ public class GameController : MonoBehaviour
                 var x = (Input.mousePosition.y - lastMousePosition.y);
                 var y = (lastMousePosition.x - Input.mousePosition.x);
 
+                if (lastVector == new Vector2(x, y))
+                {
+                    VectorReset();
+                    GetSetVector();
+                    return;
+                }
+                else
+                {
+                    lastVector = new Vector2(x, y);
+                }
+                
                 var newAngle = Vector3.zero;
                 newAngle.x = x * rotationSpeed.x;
                 newAngle.y = y * rotationSpeed.y;
@@ -59,6 +70,17 @@ public class GameController : MonoBehaviour
                 var x = (lastMousePosition.y - Input.mousePosition.y);
                 var y = (Input.mousePosition.x - lastMousePosition.x);
 
+                if (lastVector == new Vector2(x, y))
+                {
+                    VectorReset();
+                    GetSetVector();
+                    return;
+                }
+                else
+                {
+                    lastVector = new Vector2(x, y);
+                }
+
                 var newAngle = Vector3.zero;
                 newAngle.x = x * rotationSpeed.x;
                 newAngle.y = y * rotationSpeed.y;
@@ -70,12 +92,25 @@ public class GameController : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            targetObject.transform.parent = null;
-            subtargetObject.transform.parent = null;
-            rotateObj.transform.rotation = Quaternion.identity;
-            subrootObj.transform.rotation = Quaternion.identity;
+            VectorReset();
         }
 
+    }
+
+    void GetSetVector()
+    {
+        lastMousePosition = Input.mousePosition;
+        targetObject.transform.parent = rotateObj.transform;
+        subtargetObject.transform.parent = subrootObj.transform;
+    }
+
+    void VectorReset()
+    {
+        targetObject.transform.parent = null;
+        subtargetObject.transform.parent = null;
+        rotateObj.transform.rotation = Quaternion.identity;
+        subrootObj.transform.rotation = Quaternion.identity;
+        lastVector = Vector2.zero;
     }
 
     void MouseBottonMove()

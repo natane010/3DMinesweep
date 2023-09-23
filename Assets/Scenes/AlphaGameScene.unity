@@ -673,7 +673,7 @@ GameObject:
   - component: {fileID: 2014450355}
   - component: {fileID: 2014450354}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: CubeMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -702,7 +702,7 @@ MonoBehaviour:
   MeshData:
     MinMesh: {fileID: 2785687960597270117, guid: 2bc2ecaa649e56c49a4fcd74ae613281,
       type: 3}
-    YelllowMesh: {fileID: -2447776121362496397, guid: 9ecfa3d486bac8242a6c0636977f1b89,
+    YelllowMesh: {fileID: 2785687960597270117, guid: 2bc2ecaa649e56c49a4fcd74ae613281,
       type: 3}
     SafeMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &2014450355

@@ -42,11 +42,11 @@ namespace Minesweeper
                     } 
                     break;
                 case 2:
-                    meshFilter.mesh = minMesh.YelllowMesh;
+                    meshFilter.mesh = minMesh.MinMesh;
                     material.color = Color.yellow;
                     break;
                 case 1:
-                    meshFilter.mesh = minMesh.SafeMesh;
+                    meshFilter.mesh = minMesh.YelllowMesh;
                     material.color = Color.green;
                     break;
                 default:

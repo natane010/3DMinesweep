@@ -1,0 +1,14 @@
+{
+  "title": "3DMinesweeper",
+  "language": "language",
+  "next": "next",
+  "push": "push",
+  "score": "score",
+  "bestScore": "bestScore",
+  "drag": "drag",
+  "click": "click",
+  "bumb": "bumb",
+  "denger": "denger",
+  "safe": "safe",
+  "start": "Touch to Start"
+}
