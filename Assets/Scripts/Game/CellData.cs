@@ -28,7 +28,7 @@ namespace Minesweeper
         {
             if (isMine)
             {
-                //material.color = Color.yellow;
+                //material.color = Color.red;
                 //return;
             }
             switch (numberMineDistance)
@@ -53,6 +53,11 @@ namespace Minesweeper
                     meshFilter.mesh = minMesh.SafeMesh;
                     material.color = Color.green;
                     break;
+            }
+            if (isMine)
+            {
+                material.color = Color.red;
+                //return;
             }
         }
 
