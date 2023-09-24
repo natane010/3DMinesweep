@@ -34,6 +34,7 @@ public class LangugeData
     public string denger;
     public string safe;
     public string start;
+    public string change;
 }
 
 public static class LanguageStructDatas

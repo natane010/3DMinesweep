@@ -23,7 +23,7 @@ public class SceneController : MonoBehaviour
 
     public bool m_IsSelectBool = false;
 
-    public bool DebugMode = false;
+    public bool DebugSceneMode = false;
 
     private void Awake()
     {
@@ -36,7 +36,7 @@ public class SceneController : MonoBehaviour
 
     void Start()
     {
-        if (DebugMode)
+        if (DebugSceneMode)
         {
             return;
         }
@@ -65,7 +65,7 @@ public class SceneController : MonoBehaviour
 
     private void Update()
     {
-        if (DebugMode)
+        if (DebugSceneMode)
         {
             return;
         }
@@ -81,7 +81,7 @@ public class SceneController : MonoBehaviour
         }
     }
 
-    IEnumerator WaitSceneChange()
+    public IEnumerator WaitSceneChange()
     {
         yield return StartCoroutine(OnlyCoroutin());
         if (!m_IsSelectBool)
@@ -96,6 +96,6 @@ public class SceneController : MonoBehaviour
 
     IEnumerator OnlyCoroutin()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
     }
 }

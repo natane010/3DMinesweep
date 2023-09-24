@@ -30,6 +30,8 @@ public class GameController : MonoBehaviour
         MoveMovementMouse();
 
         CameraZoom();
+
+        CountCells();
     }
 
     void MoveMovementMouse()
@@ -158,5 +160,26 @@ public class GameController : MonoBehaviour
     {
         var scroll = Input.mouseScrollDelta.y;
         mainCamera.transform.position += mainCamera.transform.forward * scroll * zoomSpeed * -1f;
+    }
+
+    void CountCells()
+    {
+        int mainCount = targetObject.transform.childCount;
+        int subCount = subtargetObject.transform.childCount;
+
+        var data = targetObject.GetComponentsInChildren<Minesweeper.CellData>();
+        foreach (var item in data)
+        {
+            if (item.IsMine)
+            {
+                return;
+            }
+        }
+
+        if (mainCount == subCount)
+        {
+            Minesweeper.MinGameManager.instance.isResult = true;
+            StartCoroutine(SceneController.Instance.WaitSceneChange());
+        }
     }
 }

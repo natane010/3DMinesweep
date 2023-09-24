@@ -19,7 +19,8 @@ public class LangConverter : MonoBehaviour
         bomb,
         denger,
         safe,
-        start
+        start,
+        change
     }
 
     [SerializeField] langDataName dataName = 0;
@@ -80,6 +81,9 @@ public class LangConverter : MonoBehaviour
                 break;
             case langDataName.start:
                 text.text = LanguageDataSetting.Instance.data.start;
+                break;
+            case langDataName.change:
+                text.text = LanguageDataSetting.Instance.data.change;
                 break;
             default:
                 Debug.LogWarning("not selected object");
