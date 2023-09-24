@@ -179,7 +179,8 @@ public class GameController : MonoBehaviour
         if (mainCount == subCount)
         {
             Minesweeper.MinGameManager.instance.isResult = true;
-            StartCoroutine(SceneController.Instance.WaitSceneChange());
+            //StartCoroutine(SceneController.Instance.WaitSceneChange());
+            SceneController.Instance.LoadScene();
         }
     }
 }

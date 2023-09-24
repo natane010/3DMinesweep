@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
@@ -17,50 +18,36 @@ public class SceneController : MonoBehaviour
     [SerializeField] SceneData[] _SceneList;
     [SerializeField] string _StartSceneName = "Start";
 
-    int _SceneNumber = 0;
+    [SerializeField] GameObject _loadUI;
+    [SerializeField] Slider _loader;
+
+    static int _SceneNumber = 0;
 
     private AsyncOperation _SceneAsync;
+
+    private bool isLoadScene = false;
 
     public bool m_IsSelectBool = false;
 
     public bool DebugSceneMode = false;
 
-    private void Awake()
+    void Start()
     {
         if (Instance != null)
         {
             Destroy(this);
+            Destroy(this.gameObject);
         }
         Instance = this;
-    }
 
-    void Start()
-    {
         if (DebugSceneMode)
         {
             return;
         }
+        isLoadScene = false;
         _SceneNumber = 0;
         _SceneNumber++;
-        StartLoadScene(_SceneNumber);
         DontDestroyOnLoad(this);
-    }
-
-    void StartLoadScene(int number)
-    {
-        _SceneAsync = SceneManager.LoadSceneAsync(_SceneList[number].name);
-
-        _SceneAsync.allowSceneActivation = false;
-    }
-
-    void StartChangeScene()
-    {
-        _SceneAsync.allowSceneActivation = true;
-    }
-
-    public void OnChangeScene(int number)
-    {
-        //SceneManager.LoadSceneAsync
     }
 
     private void Update()
@@ -70,32 +57,50 @@ public class SceneController : MonoBehaviour
             return;
         }
 
+
         int num = _SceneNumber - 1 >= 0 ? _SceneNumber - 1 : _SceneList.Length - 1;
 
-        if (_SceneList[num].name == _StartSceneName)
+        if (_SceneList[num].name == _StartSceneName && Input.anyKey && !m_IsSelectBool)
         {
-            if (Input.anyKey && !m_IsSelectBool)
-            {
-                StartCoroutine(WaitSceneChange());
-            }
+            LoadScene();
         }
     }
 
-    public IEnumerator WaitSceneChange()
+    void CountSceneNumber()
     {
-        yield return StartCoroutine(OnlyCoroutin());
-        if (!m_IsSelectBool)
-        {
+        _SceneNumber++;
+        _SceneNumber = _SceneNumber < _SceneList.Length ? _SceneNumber : 0;
+    }
 
-            Debug.Log("ChangeScene");
-            StartChangeScene();
-            _SceneNumber++;
-            _SceneNumber = _SceneNumber > _SceneList.Length ? 0 : _SceneNumber;
+    public void LoadScene()
+    {
+        if (!isLoadScene)
+        {
+            StartCoroutine(this.WaitSyncScene());
+            Debug.Log(_SceneList[_SceneNumber].name);
         }
     }
 
-    IEnumerator OnlyCoroutin()
+    IEnumerator WaitSyncScene()
     {
-        yield return new WaitForSeconds(0.1f);
+        isLoadScene = true;
+        yield return StartCoroutine(LoadSceneData());
+        isLoadScene = false;
+    }
+
+    IEnumerator LoadSceneData()
+    {
+        _loadUI.SetActive(true);
+        _SceneAsync = SceneManager.LoadSceneAsync(_SceneList[_SceneNumber].name);
+
+        while (!_SceneAsync.isDone)
+        {
+            var progressVal = Mathf.Clamp01(_SceneAsync.progress / 0.9f);
+            _loader.value = progressVal;
+            yield return null;
+        }
+        //Debug.Log(_SceneList[_SceneNumber].name);
+        CountSceneNumber();
+        _loadUI.SetActive(false);
     }
 }

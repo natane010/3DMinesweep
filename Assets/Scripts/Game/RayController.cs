@@ -25,9 +25,14 @@ public class RayController : MonoBehaviour
             && Input.GetMouseButtonUp(0) && time < 0.5f
             && GameController.lastVector == Vector2.zero)
         {
-
             if (!ContDestroy)
             {
+                if (hit.collider.gameObject.GetComponent<Minesweeper.CellData>().isMine)
+                {
+                    Minesweeper.MinGameManager.instance.isResult = false;
+                    //StartCoroutine(SceneController.Instance.WaitSceneChange());
+                    SceneController.Instance.LoadScene();
+                }
                 //Debug.Log(hit.collider.gameObject.transform.position);
                 Destroy(hit.collider.gameObject);
                 ContDestroy = true;

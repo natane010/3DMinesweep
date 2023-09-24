@@ -35,7 +35,7 @@ public class LangConverter : MonoBehaviour
 
     void ChangeLang()
     {
-        Debug.Log("Change Lang : " + gameObject.name);
+        //Debug.Log("Change Lang : " + gameObject.name);
 
         StartCoroutine(Setbuffer());
     }
@@ -89,6 +89,6 @@ public class LangConverter : MonoBehaviour
                 Debug.LogWarning("not selected object");
                 break;
         }
-        Debug.Log("settex : " + text.text);
+        //Debug.Log("settex : " + text.text);
     }
 }

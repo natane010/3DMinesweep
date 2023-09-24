@@ -61,14 +61,14 @@ namespace Minesweeper
             }
         }
 
-        private void OnDestroy()
-        {
-            if (isMine)
-            {
-                Debug.Log("Booo!!");
-                Minesweeper.MinGameManager.instance.isResult = false;
-                StartCoroutine(SceneController.Instance.WaitSceneChange());
-            }
-        }
+        //private void OnDestroy()
+        //{
+        //    if (isMine)
+        //    {
+        //        //Debug.Log("Booo!!");
+        //        //Minesweeper.MinGameManager.instance.isResult = false;
+        //        //StartCoroutine(SceneController.Instance.WaitSceneChange());
+        //    }
+        //}
     }
 }

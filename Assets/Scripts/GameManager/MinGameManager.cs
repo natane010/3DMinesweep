@@ -14,11 +14,11 @@ namespace Minesweeper
         {
             if (instance == null)
             {
-                instance = new MinGameManager();
+                instance = this;
             }
             else
             {
-                Destroy(this);
+                Destroy(this.gameObject);
             }
             DontDestroyOnLoad(this);
         }

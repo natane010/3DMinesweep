@@ -105,7 +105,7 @@ public class LanguageDataSetting : MonoBehaviour
     {
         string jsonPath = resourcesPass + langDataFileName.Value + ".json";
 
-        Debug.Log("setPath = " + jsonPath);
+        //Debug.Log("setPath = " + jsonPath);
 
         //selectionlangData = OnlyLodeJson(jsonPath);
 
@@ -154,7 +154,7 @@ public class LanguageDataSetting : MonoBehaviour
 
         string jsonPath = resourcesPass + langDataFileName.Value + ".json";
 
-        Debug.Log("Language : jsonPath : " + jsonPath);
+        //Debug.Log("Language : jsonPath : " + jsonPath);
 
         //ファイル名が間違ってる場合はエラーを出しとく
         if (!File.Exists(jsonPath))
@@ -166,7 +166,7 @@ public class LanguageDataSetting : MonoBehaviour
         //JSONファイルを読み込む
         var json = File.ReadAllText(jsonPath);
 
-        Debug.Log(json);
+        //Debug.Log(json);
 
         //オブジェクト化する
         var obj = JsonUtility.FromJson<LangugeData>(json);
@@ -177,7 +177,7 @@ public class LanguageDataSetting : MonoBehaviour
         var item1 = obj.title;
 
         //デバッグに表示する。
-        Debug.Log(item1);
+        //Debug.Log(item1);
     }
 
     private void LoadLangData()
@@ -200,7 +200,7 @@ public class LanguageDataSetting : MonoBehaviour
         var item1 = obj.title;
 
         //デバッグに表示する。
-        Debug.Log(item1);
+        //Debug.Log(item1);
 
 
         //selectionlangData[0] = item1;
@@ -220,20 +220,17 @@ public class LanguageDataSetting : MonoBehaviour
         //JSONファイルを読み込む
         var json = File.ReadAllText(jsonPath);
 
-        Debug.Log(json);
+        //Debug.Log(json);
 
         json = json.Replace("{", "");
         json = json.Replace("}", "");
 
         json = json.Trim();
-        Debug.Log(json);
+        //Debug.Log(json);
 
         string[] array = json.Split(',');
 
-        foreach (var item in array)
-        {
-            Debug.Log(item);
-        }
+        
 
         return array;
     }
