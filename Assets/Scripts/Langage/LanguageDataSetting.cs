@@ -81,7 +81,6 @@ public class LanguageDataSetting : MonoBehaviour
             Destroy(this.gameObject);
         }
         Instance = this;
-        DontDestroyOnLoad(this);
     }
 
     // Start is called before the first frame update

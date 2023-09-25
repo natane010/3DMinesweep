@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.SceneManagement;
 
 public class ResultManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class ResultManager : MonoBehaviour
         {
             SceneController.Instance.LoadScene();
             //StartCoroutine(SceneController.Instance.StandardSceneChange());
+            //SceneManager.LoadScene("Start");
         }
     }
 }

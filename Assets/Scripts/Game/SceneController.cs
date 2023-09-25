@@ -21,6 +21,8 @@ public class SceneController : MonoBehaviour
     [SerializeField] GameObject _loadUI;
     [SerializeField] Slider _loader;
 
+    [SerializeField] int currentNum;
+
     static int _SceneNumber = 0;
 
     private AsyncOperation _SceneAsync;
@@ -31,23 +33,27 @@ public class SceneController : MonoBehaviour
 
     public bool DebugSceneMode = false;
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+
+            Instance = this;
+            isLoadScene = false;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
-        if (Instance != null)
-        {
-            Destroy(this);
-            Destroy(this.gameObject);
-        }
-        Instance = this;
 
         if (DebugSceneMode)
         {
             return;
         }
-        isLoadScene = false;
-        _SceneNumber = 0;
-        _SceneNumber++;
-        DontDestroyOnLoad(this);
     }
 
     private void Update()
@@ -56,11 +62,11 @@ public class SceneController : MonoBehaviour
         {
             return;
         }
-
+        currentNum = _SceneNumber;
 
         int num = _SceneNumber - 1 >= 0 ? _SceneNumber - 1 : _SceneList.Length - 1;
 
-        if (_SceneList[num].name == _StartSceneName && Input.anyKey && !m_IsSelectBool)
+        if (_SceneList[_SceneNumber].name == _StartSceneName && Input.anyKeyDown && !m_IsSelectBool)
         {
             LoadScene();
         }
@@ -69,7 +75,9 @@ public class SceneController : MonoBehaviour
     void CountSceneNumber()
     {
         _SceneNumber++;
+        Debug.Log(_SceneNumber);
         _SceneNumber = _SceneNumber < _SceneList.Length ? _SceneNumber : 0;
+        Debug.Log(_SceneNumber);
     }
 
     public void LoadScene()
@@ -91,6 +99,7 @@ public class SceneController : MonoBehaviour
     IEnumerator LoadSceneData()
     {
         _loadUI.SetActive(true);
+        CountSceneNumber();
         _SceneAsync = SceneManager.LoadSceneAsync(_SceneList[_SceneNumber].name);
 
         while (!_SceneAsync.isDone)
@@ -100,7 +109,7 @@ public class SceneController : MonoBehaviour
             yield return null;
         }
         //Debug.Log(_SceneList[_SceneNumber].name);
-        CountSceneNumber();
+        
         _loadUI.SetActive(false);
     }
 }

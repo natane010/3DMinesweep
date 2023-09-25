@@ -58,6 +58,7 @@ namespace Minesweeper
                             var sample = Instantiate(SampleObject, position - offs, Quaternion.identity);
                             samples.Add(sample);
                             sample.transform.parent = SampleObjRoot.transform;
+                            sample.layer = LayerMask.NameToLayer("Sample");
                         }
                         else
                         {
