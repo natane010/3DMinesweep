@@ -35,7 +35,7 @@ public class RayController : MonoBehaviour
                     Minesweeper.MinGameManager.instance.isResult = false;
                     StartCoroutine(WaitEffect());
                     //StartCoroutine(SceneController.Instance.WaitSceneChange());
-                    SceneController.Instance.LoadScene();
+                    //SceneController.Instance.LoadScene();
                 }
                 //Debug.Log(hit.collider.gameObject.transform.position);
                 Destroy(hit.collider.gameObject);
@@ -50,10 +50,8 @@ public class RayController : MonoBehaviour
 
     IEnumerator WaitEffect()
     {
-        yield return null;
-        yield return InstanceEffect();
-
-        yield return new WaitForSeconds(1f);
+        yield return StartCoroutine(InstanceEffect());
+        SceneController.Instance.LoadScene();
     }
 
     IEnumerator InstanceEffect()
