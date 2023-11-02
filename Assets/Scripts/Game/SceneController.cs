@@ -23,6 +23,7 @@ public class SceneController : MonoBehaviour
 
     [SerializeField] int currentNum;
 
+    [SerializeField] AudioSource audioSource;
     static int _SceneNumber = 0;
 
     private AsyncOperation _SceneAsync;
@@ -82,6 +83,7 @@ public class SceneController : MonoBehaviour
 
     public void LoadScene()
     {
+        audioSource.Play();
         if (!isLoadScene)
         {
             StartCoroutine(this.WaitSyncScene());
@@ -91,6 +93,12 @@ public class SceneController : MonoBehaviour
 
     IEnumerator WaitSyncScene()
     {
+        yield return new WaitForSeconds(0.5f);
+        if (m_IsSelectBool)
+        {
+            yield break;
+        }
+        
         isLoadScene = true;
         yield return StartCoroutine(LoadSceneData());
         isLoadScene = false;

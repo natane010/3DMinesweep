@@ -22,6 +22,11 @@ namespace Minesweeper
                 m_GameCheaker = true;
                 LateStart();
             }
+            if (isMine)
+            {
+                float sin = Mathf.Sin(Time.time * 5) / 5f;
+                this.gameObject.transform.localScale = Vector3.one + new Vector3(sin, sin, sin);
+            }
         }
 
         void LateStart()
@@ -56,7 +61,7 @@ namespace Minesweeper
             }
             if (isMine)
             {
-                material.color = Color.red;
+                //material.color = Color.red;
                 //return;
             }
         }
