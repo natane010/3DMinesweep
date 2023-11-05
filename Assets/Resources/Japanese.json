@@ -11,5 +11,6 @@
   "denger": "危険",
   "safe": "安全",
   "start": "タッチして開始",
-  "change": "LanguageSetting"
+  "change": "LanguageSetting",
+  "colorsupport": "色補正"
 }

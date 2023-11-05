@@ -35,6 +35,7 @@ public class LangugeData
     public string safe;
     public string start;
     public string change;
+    public string colorsupport;
 }
 
 public static class LanguageStructDatas
@@ -55,7 +56,7 @@ public class LanguageDataSetting : MonoBehaviour
 
     [SerializeField] string[] languageType;
     
-    public const string resourcesPass = "Assets/Resources/";
+    public const string resourcesPass = "Assets/lang/";
 
     //JSONファイルのパスを記載する。
     //public string jsonPath = "Assets/Resources/settings.json";
@@ -152,20 +153,22 @@ public class LanguageDataSetting : MonoBehaviour
     {
 
         string jsonPath = resourcesPass + langDataFileName.Value + ".json";
+        string jsonPath2 = langDataFileName.Value;
 
         //Debug.Log("Language : jsonPath : " + jsonPath);
 
         //ファイル名が間違ってる場合はエラーを出しとく
-        if (!File.Exists(jsonPath))
-        {
-            Debug.Log("setting File not Exists");
-            return;
-        }
+        //if (!File.Exists(jsonPath))
+        //{
+        //    Debug.Log("setting File not Exists");
+        //    return;
+        //}
 
         //JSONファイルを読み込む
-        var json = File.ReadAllText(jsonPath);
+        //var json = File.ReadAllText(jsonPath);
+        var json = Resources.Load<TextAsset>(jsonPath2).ToString();
 
-        //Debug.Log(json);
+        Debug.Log(json);
 
         //オブジェクト化する
         var obj = JsonUtility.FromJson<LangugeData>(json);
@@ -182,15 +185,17 @@ public class LanguageDataSetting : MonoBehaviour
     private void LoadLangData()
     {
         string jsonPath = resourcesPass + langDataFileName.Value + ".json";
+        string jsonPath2 = langDataFileName.Value;
         //ファイル名が間違ってる場合はエラーを出しとく
-        if (!File.Exists(jsonPath))
-        {
-            Debug.Log("setting File not Exists");
-            return;
-        }
+        //if (!File.Exists(jsonPath))
+        //{
+        //    Debug.Log("setting File not Exists");
+        //    return;
+        //}
 
         //JSONファイルを読み込む
-        var json = File.ReadAllText(jsonPath);
+        //var json = File.ReadAllText(jsonPath);
+        var json = Resources.Load<TextAsset>(jsonPath2).ToString();
 
         //オブジェクト化する
         var obj = JsonUtility.FromJson<Languages>(json);
@@ -210,15 +215,15 @@ public class LanguageDataSetting : MonoBehaviour
     private string[] OnlyLodeJson(string jsonPath)
     {
         //ファイル名が間違ってる場合はエラーを出しとく
-        if (!File.Exists(jsonPath))
-        {
-            Debug.Log("setting File not Exists");
-            return null;
-        }
+        //if (!File.Exists(jsonPath))
+        //{
+        //    Debug.Log("setting File not Exists");
+        //    return null;
+        //}
 
         //JSONファイルを読み込む
-        var json = File.ReadAllText(jsonPath);
-
+        //var json = File.ReadAllText(jsonPath);
+        var json = Resources.Load<TextAsset>(langFileName).ToString();
         //Debug.Log(json);
 
         json = json.Replace("{", "");

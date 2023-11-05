@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Minesweeper;
 
 public class RayController : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class RayController : MonoBehaviour
                     //SceneController.Instance.LoadScene();
                 }
                 //Debug.Log(hit.collider.gameObject.transform.position);
+                MinGameManager.instance.AddScore();
                 Destroy(hit.collider.gameObject);
                 ContDestroy = true;
             }

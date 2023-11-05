@@ -1,5 +1,26 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8006147130720337464
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f64807c9b826a65408d9563b2254adde, type: 3}
+  m_Name: CustomColorPostVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  <displayName>k__BackingField: 
+  tintColor:
+    m_OverrideState: 1
+    m_Value:
+      r: 1
+      g: 0
+      b: 0
+      a: 1
 --- !u!114 &-7893295128165547882
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -13,45 +34,34 @@ MonoBehaviour:
   m_Name: Bloom
   m_EditorClassIdentifier: 
   active: 1
-  m_AdvancedMode: 0
   threshold:
     m_OverrideState: 1
     m_Value: 1
-    min: 0
   intensity:
     m_OverrideState: 1
     m_Value: 1
-    min: 0
   scatter:
     m_OverrideState: 0
     m_Value: 0.7
-    min: 0
-    max: 1
   clamp:
     m_OverrideState: 0
     m_Value: 65472
-    min: 0
   tint:
     m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
-    hdr: 0
-    showAlpha: 0
-    showEyeDropper: 1
   highQualityFiltering:
     m_OverrideState: 0
     m_Value: 0
   skipIterations:
     m_OverrideState: 0
     m_Value: 1
-    min: 0
-    max: 16
   dirtTexture:
     m_OverrideState: 0
     m_Value: {fileID: 0}
+    dimension: 1
   dirtIntensity:
     m_OverrideState: 0
     m_Value: 0
-    min: 0
 --- !u!114 &-7011558710299706105
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -65,26 +75,18 @@ MonoBehaviour:
   m_Name: Vignette
   m_EditorClassIdentifier: 
   active: 1
-  m_AdvancedMode: 0
   color:
     m_OverrideState: 0
     m_Value: {r: 0, g: 0, b: 0, a: 1}
-    hdr: 0
-    showAlpha: 0
-    showEyeDropper: 1
   center:
     m_OverrideState: 0
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.25
-    min: 0
-    max: 1
+    m_Value: 0
   smoothness:
     m_OverrideState: 1
     m_Value: 0.4
-    min: 0.01
-    max: 1
   rounded:
     m_OverrideState: 0
     m_Value: 0
@@ -104,6 +106,8 @@ MonoBehaviour:
   - {fileID: 849379129802519247}
   - {fileID: -7893295128165547882}
   - {fileID: -7011558710299706105}
+  - {fileID: 6821141308463007948}
+  - {fileID: 7129828702067119242}
 --- !u!114 &849379129802519247
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -116,8 +120,100 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c23e3b12dc18c42a140437e53d3951, type: 3}
   m_Name: Tonemapping
   m_EditorClassIdentifier: 
-  active: 1
-  m_AdvancedMode: 0
+  active: 0
   mode:
     m_OverrideState: 1
+    m_Value: 2
+--- !u!114 &6821141308463007948
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
+  m_Name: ColorAdjustments
+  m_EditorClassIdentifier: 
+  active: 1
+  postExposure:
+    m_OverrideState: 1
+    m_Value: -0.3
+  contrast:
+    m_OverrideState: 1
+    m_Value: 3.5
+  colorFilter:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  hueShift:
+    m_OverrideState: 1
+    m_Value: -38
+  saturation:
+    m_OverrideState: 1
+    m_Value: 100
+--- !u!114 &7129828702067119242
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 710a98edcb0097542819d337428e4ea4, type: 3}
+  m_Name: ColorScale
+  m_EditorClassIdentifier: 
+  active: 0
+  isActivation:
+    m_OverrideState: 1
     m_Value: 1
+  color:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 0, b: 0, a: 1}
+  ColorStentNumber:
+    m_OverrideState: 1
+    m_Value: 255
+  gamma:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  lift:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  gain:
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  hue:
+    m_OverrideState: 1
+    m_Value: 0
+  sat:
+    m_OverrideState: 1
+    m_Value: 1
+  val:
+    m_OverrideState: 1
+    m_Value: 1
+  temputure:
+    m_OverrideState: 1
+    m_Value: 0
+  reversephotograph:
+    m_OverrideState: 0
+    m_Value: 0
+  photographAmount:
+    m_OverrideState: 0
+    m_Value: 0
+  activeLut:
+    m_OverrideState: 0
+    m_Value: 0
+  lutDimension:
+    m_OverrideState: 0
+    m_Value: 2
+  lutAmount:
+    m_OverrideState: 0
+    m_Value: 1
+  sourceLut:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
+  LUTStentNumber:
+    m_OverrideState: 0
+    m_Value: 0

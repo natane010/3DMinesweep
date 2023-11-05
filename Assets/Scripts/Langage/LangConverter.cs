@@ -20,7 +20,8 @@ public class LangConverter : MonoBehaviour
         denger,
         safe,
         start,
-        change
+        change,
+        colorsupport
     }
 
     [SerializeField] langDataName dataName = 0;
@@ -84,6 +85,9 @@ public class LangConverter : MonoBehaviour
                 break;
             case langDataName.change:
                 text.text = LanguageDataSetting.Instance.data.change;
+                break;
+            case langDataName.colorsupport:
+                text.text = LanguageDataSetting.Instance.data.colorsupport;
                 break;
             default:
                 Debug.LogWarning("not selected object");

@@ -8,9 +8,17 @@ namespace Minesweeper
     {
         public static MinGameManager instance = null;
 
-        public const string scoreKey = "memory:score"; 
+        public const string scoreKey = "memory:score";
+
+        public bool isColorChange = false;
 
         public int score;
+
+        public int topScore = 0;
+
+        public int TopScore => LodeScore();
+
+        [SerializeField] int AddCount = 10;
 
         public bool isResult = true;
 
@@ -32,8 +40,20 @@ namespace Minesweeper
 #if UNITY_EDITOR
             PlayerPrefs.DeleteKey(scoreKey);
 #endif
+
+            topScore = LodeScore();
         }
 
+
+        public void AddScore()
+        {
+            score += AddCount;
+        }
+
+        public void ResetScore()
+        {
+            score = 0;
+        }
 
         public int LodeScore()
         {
@@ -45,5 +65,18 @@ namespace Minesweeper
             PlayerPrefs.SetInt(scoreKey, HightScore);
         }
 
+
+        public void IsChangeColor()
+        {
+            SceneController.Instance.m_IsSelectBool = true;
+            isColorChange = isColorChange ? false : true;
+            StartCoroutine(WaitOneFrame());
+            SceneController.Instance.m_IsSelectBool = false;
+        }
+
+        IEnumerator WaitOneFrame()
+        {
+            yield return null;
+        }
     }
 }
