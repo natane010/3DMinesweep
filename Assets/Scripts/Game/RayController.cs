@@ -9,7 +9,12 @@ public class RayController : MonoBehaviour
     bool isActive;
     bool ContDestroy;
     [SerializeField] GameObject Effect;
-    Vector3 pos;
+
+    private void Start()
+    {
+        Effect.SetActive(false);
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -32,13 +37,9 @@ public class RayController : MonoBehaviour
             {
                 if (hit.collider.gameObject.GetComponent<Minesweeper.CellData>().isMine)
                 {
-                    pos = hit.collider.gameObject.transform.position;
                     Minesweeper.MinGameManager.instance.isResult = false;
                     StartCoroutine(WaitEffect());
-                    //StartCoroutine(SceneController.Instance.WaitSceneChange());
-                    //SceneController.Instance.LoadScene();
                 }
-                //Debug.Log(hit.collider.gameObject.transform.position);
                 MinGameManager.instance.AddScore();
                 Destroy(hit.collider.gameObject);
                 ContDestroy = true;
@@ -58,8 +59,8 @@ public class RayController : MonoBehaviour
 
     IEnumerator InstanceEffect()
     {
+        Effect.SetActive(true);
         yield return null;
-        Instantiate(Effect, pos, Quaternion.identity);
         yield return new WaitForSeconds(1f);
     }
 }
